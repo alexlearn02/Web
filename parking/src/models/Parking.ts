@@ -1,4 +1,5 @@
 import type { GPS } from "../types/GPS";
+import { generateRandomNumberId } from "../utils/generateRandomNumberId";
 import { Spot } from "./Spot";
 
 export class Parking{
@@ -12,7 +13,6 @@ export class Parking{
     parkIds:number[];
 
     constructor(
-        id : number,
         name : string,
         cityId:number,
         location:GPS,
@@ -20,7 +20,7 @@ export class Parking{
         opened:boolean,
         hourlyRate:number,
     ){
-        this.id = id;
+        this.id = generateRandomNumberId();
         this.name=name;
         this.cityId=cityId;
         this.location=location;
@@ -29,7 +29,7 @@ export class Parking{
         this.hourlyRate=hourlyRate;
         this.parkIds = [];
         for (let i=0; i<numberOfSpots; i++){
-            const spot = new Spot (i+1, id);
+            const spot = new Spot (i+1);
             this.parkIds.push(spot.id);
         }
     }

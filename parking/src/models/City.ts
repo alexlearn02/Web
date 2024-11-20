@@ -10,7 +10,6 @@ export class City  {
     location: GPS;
     constructor(
         name : string,
-        slug :string,
         parkingsIds : number[],
         country : string,
         location: GPS,

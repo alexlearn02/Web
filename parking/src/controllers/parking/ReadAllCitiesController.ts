@@ -1,7 +1,9 @@
 import {createFactory } from 'hono/factory';
 import { logger } from 'hono/logger';
-import { generateCitiesView } from '../../views/city/ReadAllCitiesView';
+import ReadAllCitiesView from '../../views/city/ReadAllCitiesView';
 import { cities } from '../../data/staticDatabase';
+import ReactDOMServer from 'react-dom/server';  // Importation de ReactDOMServer
+
 
 const factory = createFactory();
 const middleware = factory.createMiddleware(async (c, next) => {
@@ -10,8 +12,8 @@ const middleware = factory.createMiddleware(async (c, next) => {
 });
 
 const ReadAllCitiesController = factory.createHandlers(logger(), middleware, (c) => {
-    const Html = generateCitiesView(cities);
-    return c.html(Html);
+    const htmlContent = ReactDOMServer.renderToStaticMarkup(ReadAllCitiesView({ cities }));
+    return c.html(htmlContent);
 });
 
 export default ReadAllCitiesController;

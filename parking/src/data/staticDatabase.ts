@@ -80,7 +80,7 @@ function setupParkingsAndCities() {
           parkingData.rate
         );
         allParkings.push(parking);
-        city.parkingsIds.push(parking.id); // Ajouter le parking à la ville
+        city.parkingsIds.push(parking.id); 
       }
     }
   
